@@ -20,9 +20,12 @@ const ExcelUpload = ({ onDataProcessed, onReset, hasData }) => {
     const formData = new FormData();
     formData.append('file', file);
 
+    // Automatically picks up production Railway URL or falls back to localhost for development
+    const API_URL = import.meta.env.VITE_API_URL || 'https://velocity-report-production.up.railway.app';
+
     setLoading(true);
     try {
-      const res = await axios.post('http://localhost:5000/api/velocity/analyze', formData, {
+      const res = await axios.post(`${API_URL}/api/velocity/analyze`, formData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       });
       onDataProcessed(res.data);
