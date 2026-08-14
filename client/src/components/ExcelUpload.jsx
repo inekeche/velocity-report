@@ -20,7 +20,8 @@ const ExcelUpload = ({ onDataProcessed, onReset, hasData }) => {
     const formData = new FormData();
     formData.append('file', file);
 
-    const API_URL = 'https://velocity-report-production.up.railway.app';
+    // Uses Render environment variable in production, localhost for local development
+    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
     setLoading(true);
     try {

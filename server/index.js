@@ -7,16 +7,14 @@ const velocityRoutes = require('./routes/velocityRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allowed origins for development and production (Vercel)
+// Allowed origins for development and production
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://velocity-report-f6ss.vercel.app" // Replace with your exact Vercel frontend URL if different
+  "https://your-frontend-app-name.onrender.com" // Update this once Render generates your frontend URL
 ];
 
-// 1. Configure CORS dynamically for production & local development
 app.use(cors({
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     if (allowedOrigins.indexOf(origin) === -1) {
       const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
@@ -28,18 +26,14 @@ app.use(cors({
   credentials: true
 }));
 
-// 2. Middleware
 app.use(express.json());
 
-// 3. Root health check route (helpful for verifying deployment status on Railway)
 app.get('/', (req, res) => {
   res.send('Smart AI Velocity API is running successfully!');
 });
 
-// 4. Routes (Mounted under /api/velocity)
 app.use('/api/velocity', velocityRoutes);
 
-// 5. Database Connection & Server Startup
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
     console.log('MongoDB Connected Successfully');
