@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 // Allowed origins for development and production
 const allowedOrigins = [
   "http://localhost:5173",
-  "https://your-frontend-app-name.onrender.com" // Update this once Render generates your frontend URL
+  "https://velocity-frontend-10a8.onrender.com"
 ];
 
 app.use(cors({
