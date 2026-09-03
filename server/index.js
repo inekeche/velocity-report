@@ -28,11 +28,13 @@ app.use(cors({
 
 app.use(express.json());
 
+// Routes
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/velocity', velocityRoutes);
+
 app.get('/', (req, res) => {
   res.send('Smart AI Velocity API is running successfully!');
 });
-
-app.use('/api/velocity', velocityRoutes);
 
 mongoose.connect(process.env.MONGO_URI)
   .then(() => {
