@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Navbar = ({ userInfo, onLogout }) => {
+const Navbar = () => {
   const scrollToSection = (id) => {
     const element = document.getElementById(id);
     if (element) {
@@ -17,11 +17,6 @@ const Navbar = ({ userInfo, onLogout }) => {
         <span onClick={() => scrollToSection('dashboard')} style={linkStyle}>Dashboard</span>
         <span onClick={() => scrollToSection('reports')} style={linkStyle}>Reports</span>
         <span onClick={() => scrollToSection('settings')} style={linkStyle}>Settings</span>
-        {userInfo && (
-          <button onClick={onLogout} style={logoutBtnStyle}>
-            Logout
-          </button>
-        )}
       </div>
     </nav>
   );
@@ -48,8 +43,7 @@ const logoStyle = {
 
 const linksStyle = {
   display: 'flex',
-  gap: '20px',
-  alignItems: 'center'
+  gap: '25px'
 };
 
 const linkStyle = {
@@ -58,17 +52,6 @@ const linkStyle = {
   color: '#cbd5e1',
   fontWeight: '500',
   transition: 'color 0.2s'
-};
-
-const logoutBtnStyle = {
-  padding: '6px 12px',
-  backgroundColor: '#dc2626',
-  color: '#fff',
-  border: 'none',
-  borderRadius: '4px',
-  cursor: 'pointer',
-  fontSize: '13px',
-  fontWeight: 'bold'
 };
 
 export default Navbar;
