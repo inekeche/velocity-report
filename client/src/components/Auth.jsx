@@ -15,8 +15,12 @@ function Auth({ onLoginSuccess }) {
     e.preventDefault();
     setError('');
     setLoading(true);
+    
+    // Automatically uses local backend when running locally, or your live Render backend when deployed
+    const API_URL = import.meta.env.VITE_API_URL || 'https://velocity-report-backend.onrender.com';
+    
     try {
-      const endpoint = isLogin ? 'https://velocity-backend-54t0.onrender.com/api/auth/login' : 'https://velocity-backend-54t0.onrender.com/api/auth/signup';
+      const endpoint = isLogin ? `${API_URL}/api/auth/login` : `${API_URL}/api/auth/signup`;
       const response = await axios.post(endpoint, formData);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
       onLoginSuccess(response.data);
