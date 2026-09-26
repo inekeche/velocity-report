@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Vite environment variable configuration with your live Render backend as fallback
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://velocity-backend-54t0.onrender.com';
-
 function Auth({ onLoginSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({ name: '', email: '', password: '', company: '' });
@@ -19,7 +16,7 @@ function Auth({ onLoginSuccess }) {
     setError('');
     setLoading(true);
     try {
-      const endpoint = isLogin ? `${API_BASE_URL}/api/auth/login` : `${API_BASE_URL}/api/auth/signup`;
+      const endpoint = isLogin ? 'https://velocity-backend-54t0.onrender.com/api/auth/login' : 'https://velocity-backend-54t0.onrender.com/api/auth/signup';
       const response = await axios.post(endpoint, formData);
       localStorage.setItem('userInfo', JSON.stringify(response.data));
       onLoginSuccess(response.data);

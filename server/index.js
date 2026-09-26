@@ -7,21 +7,7 @@ const velocityRoutes = require('./routes/velocityRoutes');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Allowed origins for development and production
-const allowedOrigins = [
-  "http://localhost:5173",
-  "https://velocity-frontend-10a8.onrender.com"
-];
-
-// Simplified & Bulletproof CORS configuration
-app.use(cors({
-  origin: allowedOrigins,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true
-}));
-
-// Parse incoming JSON
+app.use(cors());
 app.use(express.json());
 
 // Routes
