@@ -64,7 +64,6 @@ function App() {
   const computedNormal = dataItems.filter(item => item.category === 'Normal').length;
   const computedOut = dataItems.filter(item => item.category === 'Out of Stock').length;
 
-  // Compute stock balance and total sales reliably from data items
   const computedStockBalance = dataItems.reduce((acc, item) => acc + (Number(item.closingQty) || 0), 0);
   const computedTotalSales = dataItems.reduce((acc, item) => acc + (Number(item.totalSold) || 0), 0);
 
@@ -122,13 +121,28 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
-      {/* Custom Navbar with Profile link */}
-      <div style={{ background: '#0f172a', padding: '15px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff' }}>
+      {/* Navbar with Profile & Logout Button directly integrated */}
+      <div style={{ background: '#0f172a', padding: '15px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff', flexWrap: 'wrap', gap: '15px' }}>
         <h3 style={{ margin: 0, cursor: 'pointer' }} onClick={() => setActiveTab('dashboard')}>🚀 Flexzy Smart(AI) Velocity Analytics</h3>
-        <div style={{ display: 'flex', gap: '20px', alignItems: 'center' }}>
+        
+        <div style={{ display: 'flex', gap: '20px', alignItems: 'center', flexWrap: 'wrap' }}>
           <span style={{ cursor: 'pointer', color: activeTab === 'dashboard' ? '#38bdf8' : '#cbd5e1' }} onClick={() => setActiveTab('dashboard')}>Dashboard</span>
           <span style={{ cursor: 'pointer', color: activeTab === 'reports' ? '#38bdf8' : '#cbd5e1' }} onClick={() => setActiveTab('reports')}>Reports</span>
-          <span style={{ cursor: 'pointer', color: activeTab === 'profile' ? '#38bdf8' : '#cbd5e1', fontWeight: 'bold' }} onClick={() => setActiveTab('profile')}>👤 {userInfo.name}</span>
+          
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', borderLeft: '1px solid #334155', paddingLeft: '20px' }}>
+            <span 
+              style={{ cursor: 'pointer', color: activeTab === 'profile' ? '#38bdf8' : '#cbd5e1', fontWeight: 'bold' }} 
+              onClick={() => setActiveTab('profile')}
+            >
+              👤 {userInfo.name}
+            </span>
+            <button 
+              onClick={handleLogout} 
+              style={{ padding: '6px 12px', backgroundColor: '#dc2626', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold', fontSize: '13px' }}
+            >
+              Sign Out
+            </button>
+          </div>
         </div>
       </div>
 

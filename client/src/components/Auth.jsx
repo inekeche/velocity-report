@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-// Automatically points to your live Render backend or falls back to localhost for development
-const API_BASE_URL = process.env.REACT_APP_API_URL || import.meta.env?.VITE_API_URL || 'https://YOUR-BACKEND-SERVICE-NAME.onrender.com';
+// Vite environment variable configuration with your live Render backend as fallback
+const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://velocity-backend-54t0.onrender.com';
 
 function Auth({ onLoginSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
