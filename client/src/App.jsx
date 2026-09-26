@@ -121,7 +121,8 @@ function App() {
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', backgroundColor: '#f8fafc' }}>
-      {/* Original Navbar Layout */}
+      
+      {/* Navbar with Integrated Logout Button */}
       <div style={{ background: '#0f172a', padding: '15px 30px', display: 'flex', justifyContent: 'space-between', alignItems: 'center', color: '#fff', flexWrap: 'wrap', gap: '15px' }}>
         <h3 style={{ margin: 0, cursor: 'pointer' }} onClick={() => setActiveTab('dashboard')}>🚀 Flexzy Smart(AI) Velocity Analytics</h3>
         
@@ -129,6 +130,9 @@ function App() {
           <span style={{ cursor: 'pointer', color: activeTab === 'dashboard' ? '#38bdf8' : '#cbd5e1' }} onClick={() => setActiveTab('dashboard')}>Dashboard</span>
           <span style={{ cursor: 'pointer', color: activeTab === 'reports' ? '#38bdf8' : '#cbd5e1' }} onClick={() => setActiveTab('reports')}>Reports</span>
           <span style={{ cursor: 'pointer', color: activeTab === 'profile' ? '#38bdf8' : '#cbd5e1', fontWeight: 'bold' }} onClick={() => setActiveTab('profile')}>👤 {userInfo.name}</span>
+          <button onClick={handleLogout} style={{ padding: '6px 12px', backgroundColor: '#dc2626', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontSize: '13px', fontWeight: 'bold' }}>
+            Logout
+          </button>
         </div>
       </div>
 
